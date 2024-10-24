@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PostCard } from './post-card';
+import { PostCard } from '../post-card';
 import styles from './posts-grid.module.scss';
 
 const POSTS_PER_PAGE = 10;
