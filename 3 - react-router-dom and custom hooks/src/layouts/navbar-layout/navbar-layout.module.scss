@@ -1,0 +1,29 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: #900;
+  box-shadow: 0 2px 4px #5555;
+  ul {
+    display: flex;
+    gap: 8px;
+    list-style-type: none;
+
+    li {
+      
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: #ccc;
+        padding: 12px 8px;
+        &.active {
+          box-shadow: inset 0 -4px 0px #fff;
+        }
+
+        &:hover {
+          
+        color: #fff;
+        }
+      }
+    }
+  }
+}
