@@ -1,10 +1,7 @@
-import { PostsGrid } from "./components/posts-grid";
+import { AppRouter } from "./routing/router";
 
 export function App() {
   return (
-    <div>
-      <h1>Posts</h1>
-      <PostsGrid />
-    </div>
+    <AppRouter />
   );
 }
