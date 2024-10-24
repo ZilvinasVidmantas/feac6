@@ -1,24 +1,10 @@
-import React from "react";
 import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/use-fetch";
 
 
 export function SinglePostPage() {
   const { postId } = useParams();
-  const [post, setPost] = React.useState(null);
-
-  React.useEffect(() => {
-    const fetchPost = async () => {
-      try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-      const fetchedPost = await response.json();
-      setPost(fetchedPost);
-      } catch (error) {
-      console.error("Error fetching post:", error);
-      }
-    };
-
-    fetchPost();
-  }, [postId])
+  const { data: post} = useFetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
 
   if(post === null) {
     return <div></div>

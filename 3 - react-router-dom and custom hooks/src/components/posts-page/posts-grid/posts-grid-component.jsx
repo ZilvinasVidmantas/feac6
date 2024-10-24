@@ -1,25 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PostCard } from '../post-card';
 import styles from './posts-grid.module.scss';
+import useFetch from '../../../hooks/use-fetch';
 
 const POSTS_PER_PAGE = 10;
 
 export const PostsGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPostCount, setTotalPostCount] = useState(0);
-  const [posts, setPosts] = useState([]);
-
   const pageCount = totalPostCount !== 0 ? Math.ceil(totalPostCount / POSTS_PER_PAGE) : 0;
+  const { data: posts } = useFetch(
+    `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&per_page=${POSTS_PER_PAGE}`,
+    (response) =>  setTotalPostCount(Number(response.headers.get('x-total-count')))
+  );
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&per_page=${POSTS_PER_PAGE}`)
-      .then(response => {
-        setTotalPostCount(Number(response.headers.get('x-total-count')));
-        return response.json()
-      })
-      .then(data => setPosts(data))
-      .catch(error => console.error('Error fetching posts:', error));
-  }, [currentPage]);
+  if(posts === null) {
+      return <div />
+  }
 
   return (
     <div>
