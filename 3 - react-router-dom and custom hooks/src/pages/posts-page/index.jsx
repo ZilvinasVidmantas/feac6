@@ -1,4 +1,4 @@
-import { PostsGrid } from "../../components/posts-grid";
+import { PostsGrid } from "../../components/posts-page/posts-grid";
 
 export const PostsPage = () => {
   return (
