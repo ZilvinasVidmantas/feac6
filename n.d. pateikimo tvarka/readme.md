@@ -33,8 +33,6 @@ Pastaba: 1. ir 2. žingsnius galite praleisti, jei jau turite repozitoriją
 7. Kuriame pull request'ą savo repozitorijoje:
 ![Alt text](./create-mr.jpg)
 
-8. Pridedame tikrintoją kaip repozitorijos, pvz.:
-![Alt text](./add-collobortor.jpg)
 
-9. Naviguojame į sukurtą Pull Request'ą, repozitorijoje kopijuojame nuorodą ir atsiunčiame į MS Teams, tikrintojui 5 chatą
+8. Naviguojame į sukurtą Pull Request'ą, repozitorijoje kopijuojame nuorodą ir atsiunčiame į MS Teams, tikrintojui į chatą
 ![Alt text](./sending-link.jpg)
