@@ -1,19 +1,15 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const morgan = require('morgan');
+require('dotenv').config();
+const { categoriesRouter } = require('./categories');
 
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.json());
+app.use(morgan('dev'));
+app.use('/api/categories', categoriesRouter);
 
-app.get('/api/categories', (req, res) => {
-  res.json([
-    { id: 1, name: 'Category 1' },
-    { id: 2, name: 'Category 2' },
-    { id: 3, name: 'Category 3' },
-    { id: 4, name: 'Category 4' },
-    { id: 5, name: 'Category 5' }
-  ])
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.listen(process.env.API_PORT, () => {
+  console.log(`Server is running on ${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`);
 })
