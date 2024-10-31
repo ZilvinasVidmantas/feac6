@@ -1,14 +1,21 @@
-const { categories } = require('../mock-categories');
+const { CategoryModel } = require('../category-model');
 
-function createCategory(req, res) {
-  const newId = categories.length + 1;
-  categories.push({ id: newId, name: req.body.name });
+async function createCategory(req, res) {
+  const { name, description, image } = req.body;
+  // reiktų atlikti validaciją, ar visi būtini laukai yra užpildyti teisingai
+  const newCategoryModel = new CategoryModel({
+    name,
+    description,
+    image,
+  });
 
-  res.json({
-    success: true,
-    message: 'Category added successfully',
-    categoryId: newId
-  })
+  try {
+    const createdCategory = await newCategoryModel.save();
+    res.status(201).json(createdCategory);
+  } catch (error) {
+    console.error('Error creating category', error);
+    res.status(400).json({ error: 'Server error, contact Administrator' });
+  }
 }
 
 module.exports = {
