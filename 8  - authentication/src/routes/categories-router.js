@@ -1,5 +1,6 @@
 const express = require('express');
 const { CategoryModel } = require('../models/category-model');
+const authMiddleware = require('../middlewares/auth-middleware');
 
 const categoriesRouter = express.Router();
 
@@ -8,7 +9,7 @@ categoriesRouter.get('/', async function getCategories(req, res) {
   res.json(allCAtegories);
 });
 
-categoriesRouter.post('/', async function createCategory(req, res) {
+categoriesRouter.post('/', authMiddleware, async function createCategory(req, res) {
   const { name, description, image } = req.body;
   // reiktų atlikti validaciją, ar visi būtini laukai yra užpildyti teisingai
   const newCategoryModel = new CategoryModel({
