@@ -25,6 +25,12 @@ userSchema.methods.isCorrectPassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
+userSchema.methods.toJSON = function () {
+  const userObject = this.toObject();
+  delete userObject.password;
+  return userObject;
+};
+
 const UserModel = mongoose.model('User', userSchema);
 
 module.exports = {
