@@ -16,5 +16,7 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/auth', authRouter);
 
 connectToDb()
-  .then(() => app.listen(PORT, () => console.log(`Server running on port ${process.env.PROTOCOL}://${process.env.HOST}:${PORT}`)))
+  .then(() =>
+    app.listen(PORT, () => console.log(`Server running on port ${process.env.PROTOCOL}://${process.env.HOST}:${PORT}`)),
+  )
   .catch((err) => console.error('Failed to connect to the database', err));
