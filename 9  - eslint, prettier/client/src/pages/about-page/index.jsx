@@ -1,5 +1,5 @@
-export const AboutPage = () => {
+export function AboutPage() {
   return (
     <div>AboutPage</div>
-  )
-};
+  );
+}

@@ -1,10 +1,10 @@
-import { PostsGrid } from "../../components/posts-page/posts-grid";
+import { PostsGrid } from '../../components/posts-page/posts-grid';
 
-export const PostsPage = () => {
+export function PostsPage() {
   return (
     <div>
-    <h1>Posts</h1>
-    <PostsGrid />
-  </div>
-  )
-};
+      <h1>Posts</h1>
+      <PostsGrid />
+    </div>
+  );
+}

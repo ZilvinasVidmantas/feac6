@@ -1,5 +1,5 @@
-export const HomePage = () => {
+export function HomePage() {
   return (
     <div>HomePage</div>
-  )
-};
+  );
+}

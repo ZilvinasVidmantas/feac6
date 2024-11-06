@@ -1,13 +1,12 @@
-import { useParams } from "react-router-dom";
-import useFetch from "../../hooks/use-fetch";
-
+import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/use-fetch';
 
 export function SinglePostPage() {
   const { postId } = useParams();
-  const { data: post} = useFetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+  const { data: post } = useFetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
 
-  if(post === null) {
-    return <div></div>
+  if (post === null) {
+    return <div />;
   }
 
   return (

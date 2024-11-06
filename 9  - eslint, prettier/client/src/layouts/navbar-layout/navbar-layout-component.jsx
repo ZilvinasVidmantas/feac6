@@ -1,8 +1,7 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from 'react-router-dom';
 import styles from './navbar-layout.module.scss';
 
 export function NavbarLayout() {
-
   return (
     <>
       <header className={styles.navbar}>

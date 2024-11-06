@@ -3,7 +3,7 @@ import { HomePage } from '../pages/home-page';
 import { PostsPage } from '../pages/posts-page';
 import { AboutPage } from '../pages/about-page';
 
-export const AppRouterWithJsx = () => {
+export function AppRouterWithJsx() {
   return (
     <Router>
       <Routes>
@@ -13,4 +13,4 @@ export const AppRouterWithJsx = () => {
       </Routes>
     </Router>
   );
-};
+}

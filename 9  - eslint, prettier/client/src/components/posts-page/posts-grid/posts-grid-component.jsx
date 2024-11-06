@@ -5,17 +5,17 @@ import useFetch from '../../../hooks/use-fetch';
 
 const POSTS_PER_PAGE = 10;
 
-export const PostsGrid = () => {
+export function PostsGrid() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPostCount, setTotalPostCount] = useState(0);
   const pageCount = totalPostCount !== 0 ? Math.ceil(totalPostCount / POSTS_PER_PAGE) : 0;
   const { data: posts } = useFetch(
     `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&per_page=${POSTS_PER_PAGE}`,
-    (response) =>  setTotalPostCount(Number(response.headers.get('x-total-count')))
+    (response) => setTotalPostCount(Number(response.headers.get('x-total-count'))),
   );
 
-  if(posts === null) {
-      return <div />
+  if (posts === null) {
+    return <div />;
   }
 
   return (
@@ -26,11 +26,10 @@ export const PostsGrid = () => {
         ))}
       </div>
       <div className={styles.postsGrid}>
-        {posts.map(post => (
+        {posts.map((post) => (
           <PostCard key={post.id} {...post} />
         ))}
       </div>
     </div>
   );
-};
-
+}
