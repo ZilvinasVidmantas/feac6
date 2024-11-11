@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './post-card.module.scss';
 
-export function PostCard({ id, title, body }) {
+type PostCardProps = {
+  id: number;
+  title: string;
+  body: string;
+}
+
+export function PostCard({ id, title, body }: PostCardProps) {
   const navigate = useNavigate();
 
   return (
