@@ -1,29 +1,29 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomePage } from '../pages/home-page';
-import { PostsPage } from '../pages/posts-page';
-import { AboutPage } from '../pages/about-page';
-import { NavbarLayout } from '../layouts/navbar-layout';
-import { SinglePostPage } from '../pages/single-post-page';
+import { routes } from './routes';
+import { NavbarLayout } from '@layouts/navbar-layout';
+import { HomePage } from '@pages/home-page';
+import { PostsPage } from '@pages/posts-page';
+import { AboutPage } from '@pages/about-page';
+import { SinglePostPage } from '@pages/single-post-page';
 
-// Outlet ir Layout
 const router = createBrowserRouter([{
-  path: '/',
+  path: routes.HomePage,
   Component: NavbarLayout,
   children: [
     {
-      path: '/',
+      index: true,
       Component: HomePage,
     },
     {
-      path: '/posts',
+      path: routes.PostsPage,
       Component: PostsPage,
     },
     {
-      path: '/about',
+      path: routes.AboutPage,
       Component: AboutPage,
     },
     {
-      path: '/posts/:postId',
+      path: routes.SinglePostPage,
       Component: SinglePostPage,
     },
   ],

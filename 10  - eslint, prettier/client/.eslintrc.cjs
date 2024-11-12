@@ -6,18 +6,8 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'airbnb-typescript',
   ],
-
-  overrides: [
-    {
-      files: ['src/**/*.js[x]'],
-
-    },
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
   plugins: [
     'react',
   ],
@@ -30,4 +20,10 @@ module.exports = {
     'import/prefer-default-export': ['off'],
     'react/react-in-jsx-scope': ['off'],
   },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json'
+  }
 };

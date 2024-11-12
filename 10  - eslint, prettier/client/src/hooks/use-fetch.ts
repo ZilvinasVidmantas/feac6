@@ -1,9 +1,10 @@
+import { formatErrorMessage } from '@utils';
 import { useState, useEffect } from 'react';
 
-const useFetch = (url, onSuccess) => {
-  const [data, setData] = useState(null);
+export const useFetch = <ResponseType>(url: string, onSuccess?: (response: Response) => void) => {
+  const [data, setData] = useState<ResponseType | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,7 +14,8 @@ const useFetch = (url, onSuccess) => {
         const result = await response.json();
         setData(result);
       } catch (err) {
-        setError(err);
+        const errMessage = formatErrorMessage(err);
+        setError(errMessage);
       } finally {
         setLoading(false);
       }
@@ -24,5 +26,3 @@ const useFetch = (url, onSuccess) => {
 
   return { data, loading, error };
 };
-
-export default useFetch;
