@@ -3,4 +3,8 @@ export const routes = {
   PostsPage: '/posts',
   AboutPage: '/about',
   SinglePostPage: '/posts/:id',
-} 
+  Auth: {
+    LoginPage: '/auth/login',
+    RegisterPage: '/auth/register',
+  },
+};

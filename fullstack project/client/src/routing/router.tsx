@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { routes } from './routes';
 import { NavbarLayout } from '@layouts/navbar-layout';
 import { HomePage } from '@pages/home-page';
 import { PostsPage } from '@pages/posts-page';
 import { AboutPage } from '@pages/about-page';
 import { SinglePostPage } from '@pages/single-post-page';
+import { RegisterPage } from '@pages/auth/register-page';
+import { LoginPage } from '@pages/auth/login-page';
+import { routes } from './routes';
 
 const router = createBrowserRouter([{
   path: routes.HomePage,
@@ -25,6 +27,14 @@ const router = createBrowserRouter([{
     {
       path: routes.SinglePostPage,
       Component: SinglePostPage,
+    },
+    {
+      path: routes.Auth.RegisterPage,
+      Component: RegisterPage,
+    },
+    {
+      path: routes.Auth.LoginPage,
+      Component: LoginPage,
     },
   ],
 }]);

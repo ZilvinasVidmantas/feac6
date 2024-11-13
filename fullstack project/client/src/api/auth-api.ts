@@ -4,17 +4,26 @@ import {
   ServerUser,
   mapUser,
 } from '@types';
+import { isAxiosError } from 'axios';
 import { axiosInstance } from './axios-instance';
 
 type RegisterResponse = {
   message: string;
 };
 
-export const register = async (values: RegistrationValues) => {
-  const { data } = await axiosInstance.post<RegisterResponse>('auth/register', values);
+const registrationErrorMessage = 'registration failed';
 
-  // TODO: Handle errors
-  return data;
+export const register = async (values: RegistrationValues) => {
+  try {
+    const response = await axiosInstance.post<RegisterResponse>('auth/register', values);
+
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message ?? registrationErrorMessage);
+    }
+    throw new Error(registrationErrorMessage);
+  }
 };
 
 type LoginResponse = {
@@ -22,13 +31,18 @@ type LoginResponse = {
   token: string;
   user: ServerUser;
 };
-
 export const login = async (values: LoginValues) => {
-  const { data } = await axiosInstance.post<LoginResponse>('auth/register', values);
+  try {
+    const { data } = await axiosInstance.post<LoginResponse>('auth/login', values);
 
-  // TODO: Handle errors
-  return {
-    token: data.token,
-    user: mapUser(data.user),
-  };
+    return {
+      token: data.token,
+      user: mapUser(data.user),
+    };
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message ?? registrationErrorMessage);
+    }
+    throw new Error(registrationErrorMessage);
+  }
 };

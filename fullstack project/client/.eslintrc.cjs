@@ -20,6 +20,7 @@ module.exports = {
     'import/prefer-default-export': ['off'],
     'react/react-in-jsx-scope': ['off'],
     'no-underscore-dangle': ['off'],
+    'jsx-a11y/label-has-associated-control': ['off'],
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
