@@ -1,2 +1,4 @@
 export * from './post';
-export * from './category';
+export * from './categories';
+export * from './auth';
+export * from './users';
