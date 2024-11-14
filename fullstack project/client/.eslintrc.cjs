@@ -21,6 +21,7 @@ module.exports = {
     'react/react-in-jsx-scope': ['off'],
     'no-underscore-dangle': ['off'],
     'jsx-a11y/label-has-associated-control': ['off'],
+    'react/require-default-props': ['off'],
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

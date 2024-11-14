@@ -1,56 +1,90 @@
 import { login } from '@api';
-import React, { useState } from 'react';
+import React from 'react';
+import { Formik, FormikConfig } from 'formik';
+import { LoginValues } from '@types';
+import * as yup from 'yup';
+import { TextField } from '@components';
+import styles from './styles.module.scss';
+
+const validationSchema = yup.object().shape({
+  email: yup.string()
+    .required('Email is required')
+    .email('Email is not valid'),
+  password: yup.string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters')
+    .max(32, 'Password must be at most 32 characters')
+    .matches(/[a-zžųšįėęčą]+/, 'Password must contain at least one lowercase letter')
+    .matches(/[A-ZŽŪŲŠĮĖĘČĄ]+/, 'Password must contain at least one uppercase letter'),
+});
+
+type LoginFormFormik = FormikConfig<LoginValues>;
 
 export function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = React.useState<null | string>(null);
+  const [serverErrorMessage, setServerErrorMessage] = React.useState<null | string>(null);
 
-  const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleLogin: LoginFormFormik['onSubmit'] = async ({ email, password }) => {
     try {
       await login({ email, password });
       // Išsaugoti prisijungusio vartotojo duomenis i global state (react | zustand | redux)
       // išsaugoti token'ą į local storage
     } catch (error) {
       if (error instanceof Error) {
-        setErrorMessage(error.message);
+        setServerErrorMessage(error.message);
       }
     }
   };
 
   return (
-    <div className="login-page">
-      <h2>Login</h2>
-      {errorMessage && (
-      <p>
-        {errorMessage}
-        <button type="button" onClick={() => setErrorMessage(null)}>X</button>
-      </p>
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      onSubmit={handleLogin}
+      validationSchema={validationSchema}
+    >
+      {({
+        values, errors, touched, dirty, isValid, isSubmitting,
+        handleChange, handleSubmit, handleBlur,
+      }) => (
+        <div className={styles.loginPage}>
+          <form onSubmit={handleSubmit}>
+            <h2>Login</h2>
+            {serverErrorMessage && (
+            <p>
+              {serverErrorMessage}
+              <button type="button" onClick={() => setServerErrorMessage(null)}>X</button>
+            </p>
+            )}
+            <TextField
+              type="email"
+              name="email"
+              label="Email"
+              value={values.email}
+              error={errors.email}
+              touched={touched.email}
+              disabled={isSubmitting}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <TextField
+              type="password"
+              name="password"
+              label="Password"
+              value={values.password}
+              error={errors.password}
+              touched={touched.password}
+              disabled={isSubmitting}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <button type="submit" disabled={!dirty || !isValid || isSubmitting}>
+              {isSubmitting ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+        </div>
       )}
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    </Formik>
   );
 }
