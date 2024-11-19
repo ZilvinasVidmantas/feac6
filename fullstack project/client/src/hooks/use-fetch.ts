@@ -8,6 +8,7 @@ export const useFetch = <ResponseType>(url: string, onSuccess?: (response: Respo
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(url);
         onSuccess?.(response);
