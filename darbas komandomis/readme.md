@@ -59,7 +59,10 @@ Kiekvienas iš komandos narių turi susiurti atskirą šaką, kurioje atliks sav
     git checkout nauja-šaka
   ```
   9. Apjungiame šakas
+  ```
     git merge main
+```
+ 10.
       Jeigu nebuvo konfliktų tarp apjungiamų šakų, nieko daryti nereikia.
       Jeigu buvo konfliktų, turite apjungti konfiktuojančias dalis pasitariant su kolega.
         * Parašomas kodas
@@ -75,17 +78,17 @@ Kiekvienas iš komandos narių turi susiurti atskirą šaką, kurioje atliks sav
         ```
           git push
         ```
-  10. Atsidaro Github.com repozitoriją ir joje sukuriame pull Requestą 
-  11. kanban.com perkeliate darbą į skiltį "Review"
-  12. Sulaukę kolegos žinutės (per teams), kad buvo atliktas patikrinimas:
+  11. Atsidaro Github.com repozitoriją ir joje sukuriame pull Requestą 
+  12. kanban.com perkeliate darbą į skiltį "Review"
+  13. Sulaukę kolegos žinutės (per teams), kad buvo atliktas patikrinimas:
     1. Jeigu nėra komentarų, spaudžiate merge branch 
     2. Jeigu yra problemų, jas išsprendžiate IR KARTOJE PUNTUS 3, 4, 5, 6, 8
-  13. Ištrinate šaką lokaliai:
+  14. Ištrinate šaką lokaliai:
       ```
         git branch -d nauja-šaka
       ```
-  14. Ištrinkite šaką naudodamiesi github.com puslapiu
-  15. kanban.com perkeliate darbą į skiltį "Done"
+  15. Ištrinkite šaką naudodamiesi github.com puslapiu
+  16. kanban.com perkeliate darbą į skiltį "Done"
 
 
 
