@@ -7,7 +7,6 @@ Deploy'insim kiekvieną iš aplikacijų atskirai ir įgalinsime jų bendradarbia
 
 ### Pasi'fork'inkite [repozitoriją](https://github.com/rokasandreikenas/home-service-app-heroku) 
 ![alt text](https://i.postimg.cc/cJpDsdx3/image-1.png)
-![alt text](https://i.postimg.cc/5NsnXB9b/image-10.png)
 
 ### Repozitorijos parsiuntimas
 
@@ -17,7 +16,7 @@ Deploy'insim kiekvieną iš aplikacijų atskirai ir įgalinsime jų bendradarbia
 
 * parsisiųskite repozitoriją naudodami terminalą
 
-```
+```bash
 git clone repozitorijos_adresas
 ```
 
@@ -26,12 +25,12 @@ git clone repozitorijos_adresas
 ## Vercel parsiuntimas ir paskyros sukūrimas
 
 * Įrašykite vercel cli (command line interface) globaliai
-```
+```bash
 npm i -g vercel
 ```
 
 * Prisijunkite
-```
+```bash
 vercel login
 ```
 ![alt text](https://i.postimg.cc/vZSqNWC3/image-3.png)
@@ -41,7 +40,7 @@ vercel login
 ## Node/Express aplikacijos deploy'inimas
 
 1. Įsirašykite visas reikiamas bibliotekas
-```
+```bash
 npm i 
 ```
 
@@ -110,8 +109,7 @@ app.use(express.static(path.join(__dirname, "../", "public")));
   *   "src": nurodo, kad visi užklausų maršrutai (URL) turėtų būti apdorojami pagal šį pattern'ą.
   *   "dest": nurodo, kad visi užklausų prašymai turėtų būti nukreipti į "dist/index.js" failą.
 
-4. Pagal .env.example užpildykite aplinkos kintamuosius
-
+4. Pagal .env.example su kurkite naują __.env__ failą užpildykite aplinkos kintamuosius
 
 5. Sukurkite komandą su'build'inti projektą package.json
 ```js
