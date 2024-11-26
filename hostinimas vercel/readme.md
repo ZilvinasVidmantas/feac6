@@ -5,7 +5,7 @@ Deploy'insim kiekvieną iš aplikacijų atskirai ir įgalinsime jų bendradarbia
 
 ## Repozitorijos sukūrimas
 
-### Pasi'fork'inkite [repozitoriją](https://github.com/rokasandreikenas/home-service-app-heroku) 
+Pasi'fork'inkite [repozitoriją](https://github.com/rokasandreikenas/home-service-app-heroku) 
 ![alt text](https://i.postimg.cc/cJpDsdx3/image-1.png)
 
 ### Repozitorijos parsiuntimas
